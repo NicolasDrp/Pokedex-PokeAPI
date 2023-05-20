@@ -10,24 +10,27 @@
 </head>
 
 <body>
-  
-        <label for="searchInput">Rechercher un pokemon</label>
-        <input type="text" id="searchInput" placeholder="Recherche pokemon">
 
-        <button id="searchButton">Search</button>
+    <div class="formContainer">
+        <form action="" id="formName"><label for="searchInput">Rechercher un pokemon</label>
+            <input type="text" id="searchInput" placeholder="Recherche pokemon">
+            <button id="searchButton">Search</button>
+        </form>
 
-        <label for="searchInput2">Rechercher par type</label>
-        <input type="text" id="searchInput2" placeholder="Recherche pokemon">
+        <form action="" id="formType">
+            <label for="searchInput2">Rechercher par type</label>
+            <input type="text" id="searchInput2" placeholder="Recherche pokemon">
+            <button id="searchButton2">Search</button>
+        </form>
+    </div>
 
-        <button id="searchButton2">Search</button>
-    
-    
-        <ul id="pokemonList">
-        </ul>
+    <ul id="pokemonList">
+    </ul>
+
+    <div id="containerDetails">
         <a href="#" id="croix">X</a>
-        <div id="pokemonDetails">
-            
-        </div>
+        <div id="pokemonDetails"></div>
+    </div>
 
 
     <script src="test2.js"></script>

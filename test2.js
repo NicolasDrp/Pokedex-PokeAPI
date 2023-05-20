@@ -12,14 +12,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     let pokemonListContainer = document.getElementById('pokemonList');
     let croix = document.getElementById("croix");
     let detailsContainer = document.getElementById('pokemonDetails');
+    let containerDetails = document.getElementById('containerDetails')
 
     fetchPokemonList();
 
     function fetchPokemonList() {
+        event.preventDefault();
         fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`, 'GET', printPokemon);
     }
 
     function fetchPokemonListType() {
+        event.preventDefault();
         let searchInput2 = document.getElementById('searchInput2').value.toLowerCase();
         fetch(`https://pokeapi.co/api/v2/type/${searchInput2}`, 'GET', printPokemonSearchType);
     }
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         request.send();
     }
 
+    //verifie si la recherche correspond à un nom ou à un id 
     function filterPokemonList(pokemonList) {
         if (searchQuery === '') {
             return pokemonList;
@@ -94,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function printPokemonDetails() {
         //réaffiche la div des détails
-        pokemonListContainer.style.display = "initial";
+        containerDetails.style.display = "initial";
 
         let pokemon = JSON.parse(this.responseText);
         console.log(pokemon);
@@ -184,17 +188,19 @@ document.addEventListener('DOMContentLoaded', async function () {
         printPokemonSearchResult(filteredPokemonList);
     }
 
-    document.getElementById('searchButton').addEventListener('click', searchPokemon);
-    document.getElementById('searchButton2').addEventListener('click', fetchPokemonListType);
 
+    document.getElementById('formName').addEventListener('click', searchPokemon);
+    document.getElementById('formType').addEventListener('click', fetchPokemonListType);
+
+    //Au clic de la croix , lance la fonction hidDetail
     croix.addEventListener("click",hidDetail);
 
+    //Cache le container des détails
     function hidDetail(){
-        detailsContainer.style.display = "none"
+        containerDetails.style.display = "none"
     }
 
 });
 
 
 //TODO : Ajouter bouton reset pour revenir a la liste de 20
-//      passer detail pokemon en fixed
