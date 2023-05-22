@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     function printPokemon() {
         // Je parse/convertis ma réponse JSON pour accéder aux attributs de l'objet
         let result = JSON.parse(this.responseText);
-        console.log(result);
 
         let pokemonList = result.results;
         // Je boucle sur le tableau de résultats
