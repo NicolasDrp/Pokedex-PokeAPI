@@ -20,10 +20,10 @@
             </header>
             <div class="divSearch">
                 <h2>Pokedex</h2>
-                <form action="">
-                    <label for="">Rechercher un pokemon par son nom ou son ID</label>
+                <form action="" id="formSearch">
+                    <label for="searchInput">Rechercher un pokemon par son nom ou son ID</label>
                     <br>
-                    <input type="text">
+                    <input type="text" id="searchInput">
                     <br>
                     <button type="submit">Rechercher</button>
                 </form>
@@ -78,8 +78,10 @@
                             <hr>
                         </div>
                     </div>
-    
-                    <div id="pokemonGeneration"></div>
+
+                    <div id="pokemonGeneration">
+                    <!-- <button id="loadMoreButton">Plus...</button> -->
+                    </div>
                 </div>
             </div>
         </section>
