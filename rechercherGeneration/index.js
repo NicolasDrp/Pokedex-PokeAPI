@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', async function () {
+    // div contenant les pokemon d'une génération
     let pokemonGeneration = document.getElementById('pokemonGeneration');
+    // initialise la génération à 1 par défault
     let generation = 1;
+     // div contenant les génération disponible
+     let containerGeneration = document.getElementById('containerGeneration');
+     // Récupère toutes les div enfants de containerGeneration
+     let divGeneration = containerGeneration.getElementsByTagName('div');
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -50,16 +56,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             div.appendChild(img);
 
             // J'affiche le numéro du Pokémon
-            let span = document.createElement('span');
-            span.innerHTML = '#' + pokemonId;
-            div.appendChild(span);
-            //on passe à la ligne
-            div.appendChild(document.createElement('br'))
+            let p = document.createElement('p');
+            p.innerHTML = '#' + pokemonId;
+            div.appendChild(p);
 
             // J'affiche le nom du Pokémon
-            span = document.createElement('span');
-            span.innerHTML = pokemonList[i].name;
-            div.appendChild(span);
+            p = document.createElement('p');
+            p.innerHTML = pokemonList[i].name;
+            div.appendChild(p);
 
             // Si le div est cliqué, lancer la fonction fetchPokemonDetails
             div.addEventListener('click', function () {
@@ -75,6 +79,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     function getPokemonId(url) {
         let urlParts = url.split('/');
         return urlParts[urlParts.length - 2];
+    }
+
+    // parcour les div et récupere la valeur selon leur position
+    for (let i = 0; i < divGeneration.length; i++) {
+        divGeneration[i].addEventListener('click', function () {
+            // change la valeur de génération
+            generation = i + 1;
+            // vide la div pokemonGeneration
+            pokemonGeneration.innerHTML = '';
+            // fetch avec la nouvelle valeur
+            fetchPokemonList();
+        });
     }
 
 });

@@ -1,0 +1,79 @@
+body {
+    background-color: #2a4e89;
+}
+
+/* Affichage des pokemon */
+#pokemonGeneration {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#pokemonGeneration div {
+    margin-bottom: 0.8rem;
+}
+
+#pokemonGeneration div img {
+    margin: auto;
+}
+
+#pokemonGeneration div p {
+    margin: 0 auto 0 auto;
+}
+
+/* Affichage des génération */
+
+#containerGeneration {
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+    text-align: center;
+    align-items: center;
+}
+
+#containerGeneration div {
+    width: 100%;
+}
+
+#containerGeneration div p {
+    margin: 0;
+}
+
+/* Style générale de la page */
+
+hr {
+    background-color: #dee2e6;
+    height: 1px;
+    border: none;
+}
+
+section#left {
+    width: 40%;
+}
+
+header {
+    background-color: #3564ae;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.generation,
+.divSearch {
+    background-color: #4f7ec9;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+}
+
+h2,
+label {
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    text-align: center;
+}
+
+.divSearch form input {
+    width: 40%;
+}
