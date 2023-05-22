@@ -45,6 +45,7 @@ hr {
     background-color: #dee2e6;
     height: 1px;
     border: none;
+    margin-bottom: 0;
 }
 
 section#left {
@@ -76,4 +77,9 @@ form {
 
 .divSearch form input {
     width: 40%;
+}
+
+.generations {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }

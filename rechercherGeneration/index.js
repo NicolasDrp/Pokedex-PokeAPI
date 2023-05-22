@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     let pokemonGeneration = document.getElementById('pokemonGeneration');
     // initialise la génération à 1 par défault
     let generation = 1;
-     // div contenant les génération disponible
-     let containerGeneration = document.getElementById('containerGeneration');
-     // Récupère toutes les div enfants de containerGeneration
-     let divGeneration = containerGeneration.getElementsByTagName('div');
+    // div contenant les génération disponible
+    let containerGeneration = document.getElementById('containerGeneration');
+    // Récupère toutes les div enfants de containerGeneration
+    let divGeneration = containerGeneration.getElementsByTagName('div');
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -90,7 +90,28 @@ document.addEventListener('DOMContentLoaded', async function () {
             pokemonGeneration.innerHTML = '';
             // fetch avec la nouvelle valeur
             fetchPokemonList();
+
+            // réinitialise le style pour toutes les divs de génération
+            for (let j = 0; j < divGeneration.length; j++) {
+                divGeneration[j].style.backgroundColor = "initial";
+            }
+
+            // applique le style à la div de génération sélectionnée
+            divGeneration[i].style.backgroundColor = "white";
+
         });
+    }
+
+    // Fonction pour appliquer les styles aux divs de génération
+    function changeColorDiv(generationDivs, selectedIndex) {
+        // // Réinitialise les styles pour toutes les divs de génération
+        // for (let i = 0; i < generationDivs.length; i++) {
+        //     generationDivs[i].style.backgroundColor = "none";
+        // }
+
+        // // Applique le style à la div de génération sélectionnée
+        // let selectedDiv = generationDivs[selectedIndex];
+        // selectedDiv.style.backgroundColor = "white";
     }
 
 });
