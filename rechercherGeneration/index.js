@@ -48,6 +48,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     //affiche les pokemon de la première génération
     fetchPokemonList();
 
+    //affiche le pokemon à l'id 1 sur la section de droite
+    fetchPokemonInfo(1);
+
+    //affiche les générations disponible
+    fetchGeneration();
+
+
     //Affiche les pokemon d'une certaine génération
     function fetchPokemonList() {
         fetch(`https://pokeapi.co/api/v2/generation/${generation}/`, 'GET', printPokemonGeneration);
@@ -292,20 +299,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         abilities.innerHTML = "";
 
         //Afficher le poids
-        let weightValue = document.createElement('p');
+        let weightValue = document.createElement('li');
         weightValue.innerHTML = `Weight : `;
         weight.appendChild(weightValue);
 
-        weightValue = document.createElement('span');
+        weightValue = document.createElement('li');
         weightValue.innerHTML = `${pokemon.weight}`;
         weight.appendChild(weightValue);
 
         //Afficher la taille
-        let heightValue = document.createElement('p');
+        let heightValue = document.createElement('li');
         heightValue.innerHTML = `Height : `;
         height.appendChild(heightValue);
 
-        heightValue = document.createElement('span');
+        heightValue = document.createElement('li');
         heightValue.innerHTML = `${pokemon.height}`;
         height.appendChild(heightValue);
 
@@ -385,5 +392,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         image.src = pokemon.sprites.front_default;
         nextPokemon.appendChild(image);
     }
+
+    //Récupere la liste des générations
+    function fetchGeneration() {
+        fetch(`https://pokeapi.co/api/v2/generation/`, 'GET', printGenerations);
+    }
+
+    //fonction appeler par fetchGeneration qui affiche les générations existante
+    function printGenerations() {
+        let generations = JSON.parse(this.responseText);
+        console.log(generations)
+    }
+
 
 });

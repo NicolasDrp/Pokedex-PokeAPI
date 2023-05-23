@@ -4,6 +4,7 @@
     --blanc-generation: #dee2e6;
     --orange-text: #ffce01;
     --couleur-pokedex-generation: #4f7ec9;
+    --couleur-text: #212529;
 }
 
 body {
@@ -130,10 +131,7 @@ form {
     margin-left: 3%;
     background-color: var(--couleur-secondaire);
     border-radius: 5px;
-}
-
-#right * {
-    border: solid black 1px;
+    height: 100vh;
 }
 
 #sliderPokemon {
@@ -176,6 +174,10 @@ form {
 /* liste type et weakness */
 #infoPokemon ul {
     padding-left: 0;
+    text-align: center;
+}
+#infoPokemon ul li{
+    align-content: center;
 }
 
 .divType li {
@@ -195,16 +197,24 @@ form {
 .divAbilities {
     display: flex;
     flex-wrap: wrap;
+    background-color: var(--couleur-pokedex-generation);
+    border-radius: 5px;
     width: 35%;
+    height: min-content;
 }
 
 .divAbilities ul {
     list-style: none;
+    color: var(--blanc-generation);
+}
 
+.divAbilities ul li:first-child {
+    color: var(--couleur-text);
 }
 
 .divAbilities #height {
     flex: 1;
+    padding-left: 10px;
 }
 
 .divAbilities #weight {
@@ -213,6 +223,7 @@ form {
 
 .divAbilities #abilities {
     width: 100%;
+    padding-left: 10px;
 }
 
 .divType,
