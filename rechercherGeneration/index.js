@@ -23,9 +23,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     let pokemonList;
     //ul pour afficher les types du pokemon
     let listType = document.getElementById('listType');
-
-
-
+    //ul pour afficher les faiblesses du pokemon
+    let listWeakness = document.getElementById('listWeakness');
+    //h4 sous lequel rajouter le poids du pokemon
+    let height = document.getElementById('height');
+    //h4 sous lequel rajouter la taille du pokemon
+    let weight = document.getElementById('height');
+    //h4 sous lequel rajouter les abilitées du pokemon
+    let abilities = document.getElementById('abilities');
 
 
     function fetch(url, method, fun) {
@@ -51,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     function printPokemonGeneration() {
         // Je parse/convertis ma réponse JSON pour accéder aux attributs de l'objet
         let result = JSON.parse(this.responseText);
-        console.log(result);
 
         pokemonList = result.pokemon_species;
         // Je trie le tableau des Pokémon par leur ID
@@ -166,7 +170,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Fonction appeler par searchPokemon pour traiter les résultats de la recherche
     function searchResult() {
         let result = JSON.parse(this.responseText);
-        console.log(result);
         let pokemonList = result.pokemon_species;
         let filteredPokemonList = filterPokemonList(pokemonList);
         printPokemonSearchResult(filteredPokemonList);
@@ -198,7 +201,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             for (let i = 0; i < pokemonList.length; i++) {
                 // Je récupère le numéro du Pokémon à partir de l'URL
-                console.log(pokemonList[i])
                 let pokemonUrl = pokemonList[i].url;
                 let pokemonId = getPokemonId(pokemonUrl);
 
@@ -240,7 +242,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     function printPokemonInfo() {
         let pokemon = JSON.parse(this.responseText);
         console.log(pokemon)
-        console.log(pokemonList.length)
 
         //On vide les divs
         displayedPokemon.innerHTML = ''
@@ -267,8 +268,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         //Afficher les types du pokemon
 
-        //On vide les divs
-        listType.innerHTML = ''
+        //On vide les ul
+        listType.innerHTML = '';
+        listWeakness.innerHTML = '';
 
         //Afficher les types
         pokemon.types.forEach((type) => {
@@ -276,27 +278,26 @@ document.addEventListener('DOMContentLoaded', async function () {
             li.className = type.type.name;
             li.innerHTML = type.type.name;
             listType.appendChild(li);
+
+            fetch(type.type.url, 'GET', printWeakness)
         });
-
-        
-  
-  
-
-
-        
-
-
-
-
-
-
-
-
-
 
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);
 
+    }
+
+    //Fonction appeler par printPokemonInfo qui affiche les faiblesses d'un type
+    function printWeakness() {
+        let weak = JSON.parse(this.responseText);
+
+        //Afficher les faiblesses du type
+        weak.damage_relations.double_damage_from.forEach((weakness) => {
+            let li = document.createElement('li');
+            li.className = weakness.name;
+            li.innerHTML = weakness.name;
+            listWeakness.appendChild(li);
+        });
     }
 
     //afficher les info dans la div prevPokemon ,récupere les données d'un pokemon à partir de son id
