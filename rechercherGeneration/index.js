@@ -293,23 +293,35 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         //Afficher le poids
         let weightValue = document.createElement('p');
-        weightValue.innerHTML = `Weight : <br>${pokemon.weight}`;
+        weightValue.innerHTML = `Weight : `;
+        weight.appendChild(weightValue);
+
+        weightValue = document.createElement('span');
+        weightValue.innerHTML = `${pokemon.weight}`;
         weight.appendChild(weightValue);
 
         //Afficher la taille
         let heightValue = document.createElement('p');
-        heightValue.innerHTML = `Height : <br>${pokemon.height}`;
+        heightValue.innerHTML = `Height : `;
+        height.appendChild(heightValue);
+
+        heightValue = document.createElement('span');
+        heightValue.innerHTML = `${pokemon.height}`;
         height.appendChild(heightValue);
 
 
-        //Afficher les types
-        let stringAbility = "Abilities :";
-        let abilityValue = document.createElement('p');
-        pokemon.abilities.forEach((ability) => {
-            stringAbility = `${stringAbility} <br> ${ability.ability.name}`;
-        });
-        abilityValue.innerHTML = stringAbility;
+        //Afficher les abilitées
+
+        let abilityValue = document.createElement('li');
+        abilityValue.innerHTML = 'Abilities : ';
         abilities.appendChild(abilityValue);
+
+        pokemon.abilities.forEach((ability) => {
+            let abilityValue = document.createElement('li');
+            abilityValue.innerHTML = ability.ability.name;
+            abilities.appendChild(abilityValue);
+        });
+
 
     }
 

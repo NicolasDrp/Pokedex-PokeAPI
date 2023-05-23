@@ -1,5 +1,13 @@
+:root {
+    --couleur-principale: #2a4e89;
+    --couleur-secondaire: #3564ae;
+    --blanc-generation: #dee2e6;
+    --orange-text: #ffce01;
+    --couleur-pokedex-generation: #4f7ec9;
+}
+
 body {
-    background-color: #2a4e89;
+    background-color: var(--couleur-principale);
 }
 
 main {
@@ -21,7 +29,7 @@ main {
 
 #pokemonGeneration div img {
     margin: auto;
-    background-color: #3564ae;
+    background-color: var(--couleur-secondaire);
     border-radius: 5px;
 }
 
@@ -50,7 +58,7 @@ main {
 /* Style générale de la page */
 
 hr {
-    background-color: #dee2e6;
+    background-color: var(--blanc-generation);
     height: 1px;
     border: none;
     margin-bottom: 0;
@@ -61,14 +69,14 @@ section#left {
 }
 
 header {
-    background-color: #3564ae;
+    background-color: var(--couleur-secondaire);
     border-radius: 5px;
     margin-bottom: 1.5rem;
 }
 
 .generation,
 .divSearch {
-    background-color: #4f7ec9;
+    background-color: var(--couleur-pokedex-generation);
     border-radius: 5px;
     margin-bottom: 1.5rem;
 }
@@ -79,7 +87,7 @@ label {
 }
 
 h2 {
-    color: #ffce01;
+    color: var(--orange-text);
 }
 
 form {
@@ -97,7 +105,7 @@ form {
 }
 
 .generations:first-child {
-    background-color: white;
+    background-color: var(--blanc-generation);
 }
 
 #loadMoreButton {
@@ -106,7 +114,7 @@ form {
     right: 0;
     background-color: #28a745;
     border-radius: 5px;
-    color: white;
+    color: var(--blanc-generation);
     border: none;
     width: 10%;
     height: 1.5rem;
@@ -119,9 +127,8 @@ form {
     flex-direction: column;
     justify-content: space-around;
     width: 55%;
-    background-color: white;
     margin-left: 3%;
-    background-color: #3564ae;
+    background-color: var(--couleur-secondaire);
     border-radius: 5px;
 }
 
@@ -138,12 +145,12 @@ form {
 
 #sliderPokemon img {
     width: 100%;
-    background-color: #4f7ec9;
+    background-color: var(--couleur-pokedex-generation);
     border-radius: 5px;
 }
 
 #sliderPokemon p {
-    color: #ffce01;
+    color: var(--orange-text);
 }
 
 #infoPokemon {
@@ -152,12 +159,65 @@ form {
 }
 
 #displayedPokemon {
-    width: 30%;
+    width: 35%;
 }
 
 #prevPokemon,
 #nextPokemon {
-    width: 20%;
+    width: 25%;
+}
+
+#prevPokemon,
+#nextPokemon,
+#displayedPokemon p {
+    text-align: center;
+}
+
+/* liste type et weakness */
+#infoPokemon ul {
+    padding-left: 0;
+}
+
+.divType li {
+    list-style: none;
+    border-radius: 5px;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.divWeakness li {
+    list-style: none;
+    border-radius: 5px;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.divAbilities {
+    display: flex;
+    flex-wrap: wrap;
+    width: 35%;
+}
+
+.divAbilities ul {
+    list-style: none;
+
+}
+
+.divAbilities #height {
+    flex: 1;
+}
+
+.divAbilities #weight {
+    flex: 1;
+}
+
+.divAbilities #abilities {
+    width: 100%;
+}
+
+.divType,
+.divWeakness {
+    width: 25%;
 }
 
 /* Couleur des li selon leurs types */
@@ -174,7 +234,7 @@ form {
 }
 
 .poison {
-    background-color:#aa6bc8 ;
+    background-color: #aa6bc8;
 }
 
 .ground {
@@ -222,11 +282,11 @@ form {
 }
 
 .dragon {
-    background-color:#0b6dc3 ;
+    background-color: #0b6dc3;
 }
 
 .dark {
-    background-color:#5a5465 ;
+    background-color: #5a5465;
 }
 
 .fairy {
