@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     let nextPokemon = document.getElementById('nextPokemon');
     // list des pokemon afficher
     let pokemonList;
+    //ul pour afficher les types du pokemon
+    let listType = document.getElementById('listType');
 
 
 
@@ -262,6 +264,36 @@ document.addEventListener('DOMContentLoaded', async function () {
             nextPokemonId = 1;
         }
 
+
+        //Afficher les types du pokemon
+
+        //On vide les divs
+        listType.innerHTML = ''
+
+        //Afficher les types
+        pokemon.types.forEach((type) => {
+            let li = document.createElement('li');
+            li.className = type.type.name;
+            li.innerHTML = type.type.name;
+            listType.appendChild(li);
+        });
+
+        
+  
+  
+
+
+        
+
+
+
+
+
+
+
+
+
+
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);
 
@@ -316,5 +348,4 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
 
-    //Fin recherche pokemon
 });
