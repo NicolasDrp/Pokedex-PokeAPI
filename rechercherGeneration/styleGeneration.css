@@ -10,7 +10,7 @@ main {
 #pokemonGeneration {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-bottom: 1rem;
     position: relative;
 }
@@ -21,6 +21,8 @@ main {
 
 #pokemonGeneration div img {
     margin: auto;
+    background-color: #3564ae;
+    border-radius: 5px;
 }
 
 #pokemonGeneration div p {
@@ -76,6 +78,10 @@ label {
     text-align: center;
 }
 
+h2 {
+    color: #ffce01;
+}
+
 form {
     margin: auto;
     text-align: center;
@@ -109,21 +115,120 @@ form {
 
 /* Section de droite  */
 #right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 55%;
     background-color: white;
     margin-left: 3%;
+    background-color: #3564ae;
+    border-radius: 5px;
+}
+
+#right * {
+    border: solid black 1px;
 }
 
 #sliderPokemon {
     display: flex;
-    margin-top: 10%;
-    height: 50%;
+    height: 20%;
     justify-content: space-around;
-    position: Fixed;
+    align-items: center;
 }
 
+#sliderPokemon img {
+    width: 100%;
+    background-color: #4f7ec9;
+    border-radius: 5px;
+}
 
-#infoPokemon{
+#sliderPokemon p {
+    color: #ffce01;
+}
+
+#infoPokemon {
     display: flex;
     justify-content: space-around;
+}
+
+#displayedPokemon {
+    width: 30%;
+}
+
+#prevPokemon,
+#nextPokemon {
+    width: 20%;
+}
+
+/* Couleur des li selon leurs types */
+.normal {
+    background-color: #929da3;
+}
+
+.fighting {
+    background-color: #ce416b;
+}
+
+.flying {
+    background-color: #8fa9de;
+}
+
+.poison {
+    background-color:#aa6bc8 ;
+}
+
+.ground {
+    background-color: #da7a48;
+}
+
+.rock {
+    background-color: #c5b78c;
+}
+
+.bug {
+    background-color: #91c12f;
+}
+
+.ghost {
+    background-color: #5269ad;
+}
+
+.steel {
+    background-color: #5a8ea2;
+}
+
+.fire {
+    background-color: #ff9d55;
+}
+
+.water {
+    background-color: #5090d6;
+}
+
+.grass {
+    background-color: #63bc5a;
+}
+
+.electric {
+    background-color: #f4d23c;
+}
+
+.psychic {
+    background-color: #fa7179;
+}
+
+.ice {
+    background-color: #73cec0;
+}
+
+.dragon {
+    background-color:#0b6dc3 ;
+}
+
+.dark {
+    background-color:#5a5465 ;
+}
+
+.fairy {
+    background-color: #ec8fe6;
 }

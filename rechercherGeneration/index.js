@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     //h4 sous lequel rajouter le poids du pokemon
     let height = document.getElementById('height');
     //h4 sous lequel rajouter la taille du pokemon
-    let weight = document.getElementById('height');
+    let weight = document.getElementById('weight');
     //h4 sous lequel rajouter les abilitées du pokemon
     let abilities = document.getElementById('abilities');
 
@@ -246,10 +246,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         //On vide les divs
         displayedPokemon.innerHTML = ''
 
-        //Afficher le nom
-        let name = document.createElement('p');
-        name.innerHTML = `Name: ${pokemon.name}`;
-        displayedPokemon.appendChild(name);
+        //Afficher le nom et l'id
+        let nameID = document.createElement('p');
+        nameID.innerHTML = `${pokemon.name} #${pokemon.id}`;
+        displayedPokemon.appendChild(nameID);
 
         //Afficher l'image
         let image = document.createElement('img');
@@ -264,7 +264,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (nextPokemonId > pokemonList.length) {
             nextPokemonId = 1;
         }
-
 
         //Afficher les types du pokemon
 
@@ -284,6 +283,33 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);
+
+        //Afficher les information (taille poid , abilitées ) du pokemon
+
+        //on vide les information
+        weight.innerHTML = "";
+        height.innerHTML = "";
+        abilities.innerHTML = "";
+
+        //Afficher le poids
+        let weightValue = document.createElement('p');
+        weightValue.innerHTML = `Weight : <br>${pokemon.weight}`;
+        weight.appendChild(weightValue);
+
+        //Afficher la taille
+        let heightValue = document.createElement('p');
+        heightValue.innerHTML = `Height : <br>${pokemon.height}`;
+        height.appendChild(heightValue);
+
+
+        //Afficher les types
+        let stringAbility = "Abilities :";
+        let abilityValue = document.createElement('p');
+        pokemon.abilities.forEach((ability) => {
+            stringAbility = `${stringAbility} <br> ${ability.ability.name}`;
+        });
+        abilityValue.innerHTML = stringAbility;
+        abilities.appendChild(abilityValue);
 
     }
 
@@ -310,17 +336,18 @@ document.addEventListener('DOMContentLoaded', async function () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, 'GET', printPokemonInfoNext);
     }
 
-    //fonction appeler par fetchPokemonInfo , Afficher les infos du pokemon dans la div nextPokemon
+    //fonction appeler par fetchPokemonInfo , Afficher les infos du pokemon dans la div prevPokemon
     function printPokemonInfoPrev() {
         let pokemon = JSON.parse(this.responseText);
 
         //On vide les divs
         prevPokemon.innerHTML = ''
 
-        //Afficher le nom
-        let name = document.createElement('p');
-        name.innerHTML = `Name: ${pokemon.name}`;
-        prevPokemon.appendChild(name);
+
+        //Afficher le nom et l'id
+        let nameID = document.createElement('p');
+        nameID.innerHTML = `${pokemon.name} #${pokemon.id}`;
+        prevPokemon.appendChild(nameID);
 
         //Afficher l'image
         let image = document.createElement('img');
@@ -336,17 +363,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         //On vide les divs
         nextPokemon.innerHTML = ''
 
-        //Afficher le nom
-        let name = document.createElement('p');
-        name.innerHTML = `Name: ${pokemon.name}`;
-        nextPokemon.appendChild(name);
+        //Afficher le nom et l'id
+        let nameID = document.createElement('p');
+        nameID.innerHTML = `${pokemon.name} #${pokemon.id}`;
+        nextPokemon.appendChild(nameID);
 
         //Afficher l'image
         let image = document.createElement('img');
         image.src = pokemon.sprites.front_default;
         nextPokemon.appendChild(image);
     }
-
-
 
 });
