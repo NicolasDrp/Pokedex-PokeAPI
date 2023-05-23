@@ -11,6 +11,20 @@ document.addEventListener('DOMContentLoaded', async function () {
     let pokemonPerPage = 28;
     // Nombre de Pokémon affichés actuellement
     let displayedPokemons = 0;
+    // Div contenant le pokemon selectionner , le precedant et le suivant
+    let sliderPokemon = document.getElementById('sliderPokemon');
+    //Div du pokemon afficher
+    let displayedPokemon = document.getElementById('displayedPokemon');
+    //Div du pokemon precedant
+    let prevPokemon = document.getElementById('prevPokemon');
+    //Div du pokemon suivant
+    let nextPokemon = document.getElementById('nextPokemon');
+    // list des pokemon afficher
+    let pokemonList;
+
+
+
+
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -37,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         let result = JSON.parse(this.responseText);
         console.log(result);
 
-        let pokemonList = result.pokemon_species;
+        pokemonList = result.pokemon_species;
         // Je trie le tableau des Pokémon par leur ID
         pokemonList.sort((a, b) => {
             let pokemonIdA = getPokemonId(a.url);
@@ -69,9 +83,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             p.innerHTML = pokemonList[i].name;
             div.appendChild(p);
 
-            // Si le div est cliqué, lancer la fonction fetchPokemonDetails
+            // Si la div est cliqué, lancer la fonction fetchPokemonInfo
+
             div.addEventListener('click', function () {
-                fetchPokemonDetails(pokemonId);
+                fetchPokemonInfo(pokemonId);
             });
 
             // Je pousse mon div dans mon container qui a pour id 'pokemonGeneration'
@@ -202,15 +217,104 @@ document.addEventListener('DOMContentLoaded', async function () {
                 p = document.createElement('p');
                 p.innerHTML = pokemonList[i].name;
                 div.appendChild(p);
-                // //Si le li est cliqué , lancer la fonction fetchPokemonDetails
-                // li.addEventListener('click', function () {
-                //     fetchPokemonDetails(pokemonId);
-                // });
-                // Je pousse mon li dans mon Ul qui a pour id 'pokemonList'
+                // Si la div est cliqué, lancer la fonction fetchPokemonInfo
+
+                div.addEventListener('click', function () {
+                    fetchPokemonInfo(pokemonId);
+                });
                 pokemonGeneration.appendChild(div);
             }
         }
     }
+
+    //Au clic d'une div d'un pokemon ,récupere les données d'un pokemon à partir de son id
+    function fetchPokemonInfo(pokemonId) {
+        prevPokemonId = pokemonId - 1;
+        nextPokemonId = parseInt(pokemonId) + 1;
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, 'GET', printPokemonInfo);
+    }
+
+    //fonction appeler par fetchPokemonInfo
+    function printPokemonInfo() {
+        let pokemon = JSON.parse(this.responseText);
+        console.log(pokemon)
+        console.log(pokemonList.length)
+
+        //On vide les divs
+        displayedPokemon.innerHTML = ''
+
+        //Afficher le nom
+        let name = document.createElement('p');
+        name.innerHTML = `Name: ${pokemon.name}`;
+        displayedPokemon.appendChild(name);
+
+        //Afficher l'image
+        let image = document.createElement('img');
+        image.src = pokemon.sprites.front_default;
+        displayedPokemon.appendChild(image);
+
+        // Afficher le Pokémon précédent s'il existe
+        if (prevPokemonId < 1) {
+
+            prevPokemonId = pokemonList.length;
+        }
+        if (nextPokemonId > pokemonList.length) {
+            nextPokemonId = 1;
+        }
+
+        fetchPokemonInfoPrev(prevPokemonId);
+        fetchPokemonInfoNext(nextPokemonId);
+
+    }
+
+    //afficher les info dans la div prevPokemon ,récupere les données d'un pokemon à partir de son id
+    function fetchPokemonInfoPrev(pokemonId) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, 'GET', printPokemonInfoPrev);
+    }
+
+    //afficher les info dans la div nextPokemon ,récupere les données d'un pokemon à partir de son id
+    function fetchPokemonInfoNext(pokemonId) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, 'GET', printPokemonInfoNext);
+    }
+
+    //fonction appeler par fetchPokemonInfo , Afficher les infos du pokemon dans la div nextPokemon
+    function printPokemonInfoPrev() {
+        let pokemon = JSON.parse(this.responseText);
+
+        //On vide les divs
+        prevPokemon.innerHTML = ''
+
+        //Afficher le nom
+        let name = document.createElement('p');
+        name.innerHTML = `Name: ${pokemon.name}`;
+        prevPokemon.appendChild(name);
+
+        //Afficher l'image
+        let image = document.createElement('img');
+        image.src = pokemon.sprites.front_default;
+        prevPokemon.appendChild(image);
+    }
+
+
+    //fonction appeler par fetchPokemonInfo , Afficher les infos du pokemon dans la div nextPokemon
+    function printPokemonInfoNext() {
+        let pokemon = JSON.parse(this.responseText);
+
+        //On vide les divs
+        nextPokemon.innerHTML = ''
+
+        //Afficher le nom
+        let name = document.createElement('p');
+        name.innerHTML = `Name: ${pokemon.name}`;
+        nextPokemon.appendChild(name);
+
+        //Afficher l'image
+        let image = document.createElement('img');
+        image.src = pokemon.sprites.front_default;
+        nextPokemon.appendChild(image);
+    }
+
+
 
     //Fin recherche pokemon
 });
