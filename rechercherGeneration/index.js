@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     let abilities = document.getElementById('abilities');
     //liste des générations existante
     let generationList;
+    //Tableau pour eviter les doublons de faiblesse
+    uniqueWeaknessList = [];
 
 
     function fetch(url, method, fun) {
@@ -108,11 +110,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             pokemonGeneration.appendChild(div);
         }
 
+        //Si il y a deja un bouton LoadMore , le supprimer
         let buttonExist = document.getElementById('loadMoreButton');
         if (buttonExist) {
             loadMoreButton.parentNode.removeChild(loadMoreButton);
         }
 
+        //Creer un nouveau bouton LoadMore
         button = document.createElement('button');
         button.innerHTML = "Plus..";
         button.id = 'loadMoreButton';
@@ -264,7 +268,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         image.src = pokemon.sprites.front_default;
         displayedPokemon.appendChild(image);
 
+        //Récupere l'id du premier element de ma generation
         let lastElementList = getPokemonId(pokemonList[pokemonList.length - 1].url);
+        //Récupere l'id du dernier element de ma generation
         let firstElementList = getPokemonId(pokemonList[0].url);
         // Afficher dernier pokemon de la generation si nous sommes sur le premier
         if (prevPokemonId < firstElementList) {
@@ -278,6 +284,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         //On vide les ul
         listType.innerHTML = '';
         listWeakness.innerHTML = '';
+
+        //on vide le tableau
+        uniqueWeaknessList = [];
+
+        //Liste des types filtré pour évité les doublons
+        let uniqueWeaknessListFiltred;
 
         //Afficher les types
         pokemon.types.forEach((type) => {
@@ -293,14 +305,26 @@ document.addEventListener('DOMContentLoaded', async function () {
         function printWeakness() {
             let weak = JSON.parse(this.responseText);
 
-            //Afficher les faiblesses du type
+            // Passer les faiblesse du type dans un tableau
             weak.damage_relations.double_damage_from.forEach((weakness) => {
+                uniqueWeaknessList.push(weakness.name);
+            });
+
+            //Filtrer le tableau pour en enlever les doublons
+            uniqueWeaknessListFiltred = uniqueWeaknessList.filter((value, index, self) => {
+                return self.indexOf(value) === index;
+            });
+
+            //Afficher les faiblesse dans le ul , mais dabord supprimer le contenue car si le pokemon a n types , le append se fera n fois
+            listWeakness.innerHTML = '';
+            uniqueWeaknessListFiltred.forEach((weakness) => {
                 let li = document.createElement('li');
-                li.className = weakness.name;
-                li.innerHTML = weakness.name;
+                li.className = weakness;
+                li.innerHTML = weakness;
                 listWeakness.appendChild(li);
             });
-        }
+
+        }      
 
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);
