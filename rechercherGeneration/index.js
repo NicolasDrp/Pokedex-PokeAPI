@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     let weight = document.getElementById('weight');
     //h4 sous lequel rajouter les abilitées du pokemon
     let abilities = document.getElementById('abilities');
+    //liste des générations existante
+    let generationList;
 
 
     function fetch(url, method, fun) {
@@ -372,8 +374,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         let image = document.createElement('img');
         image.src = pokemon.sprites.front_default;
         prevPokemon.appendChild(image);
+
+        prevPokemonID = pokemon.id;
     }
 
+    // Si la div est cliqué, lancer la fonction fetchPokemonInfo
+    prevPokemon.addEventListener('click', function () {
+        fetchPokemonInfo(prevPokemonID);
+    });
 
     //fonction appeler par fetchPokemonInfo , Afficher les infos du pokemon dans la div nextPokemon
     function printPokemonInfoNext() {
@@ -391,17 +399,73 @@ document.addEventListener('DOMContentLoaded', async function () {
         let image = document.createElement('img');
         image.src = pokemon.sprites.front_default;
         nextPokemon.appendChild(image);
+
+        nextPokemonID = pokemon.id;
     }
 
-    //Récupere la liste des générations
+    // Si la div est cliqué, lancer la fonction fetchPokemonInfo
+    nextPokemon.addEventListener('click', function () {
+        fetchPokemonInfo(nextPokemonID);
+    });
+
+
+    //Prev Next Pokemon au clavier
+    document.addEventListener('keydown', function (event) {
+        // Vérification si la touche enfoncée est la flèche gauche (keyCode 37)
+        console.log(event)
+        switch (event.Key) {
+            case "ArrowLeft":
+                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+                fetchPokemonInfo(prevPokemonID);
+                break;
+            case "ArrowRight":
+                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+                fetchPokemonInfo(nextPokemonID);
+                break;
+        }
+    });
+
+
+
+
+    // Récupère la liste des générations
     function fetchGeneration() {
         fetch(`https://pokeapi.co/api/v2/generation/`, 'GET', printGenerations);
     }
 
-    //fonction appeler par fetchGeneration qui affiche les générations existante
+    // Fonction appelée par fetchGeneration qui affiche les générations existantes
     function printGenerations() {
         let generations = JSON.parse(this.responseText);
-        console.log(generations)
+        generationList = generations.count;
+
+        for (let i = 1; i < generationList + 1; i++) {
+            let div = document.createElement("div");
+            div.innerHTML = `Gen ${i}`;
+            div.className = "generations";
+            containerGeneration.appendChild(div);
+        }
+
+        // parcour les div et récupere la valeur selon leur position
+        for (let i = 0; i < divGeneration.length; i++) {
+            divGeneration[i].addEventListener('click', function () {
+                displayedPokemons = 0;
+                // change la valeur de génération
+                generation = i + 1;
+                // vide la div pokemonGeneration
+                pokemonGeneration.innerHTML = '';
+                // fetch avec la nouvelle valeur
+                fetchPokemonList();
+
+                // réinitialise le style pour toutes les divs de génération
+                for (let j = 0; j < divGeneration.length; j++) {
+                    divGeneration[j].style.backgroundColor = "initial";
+                }
+
+                // applique le style à la div de génération sélectionnée
+                divGeneration[i].style.backgroundColor = "white";
+
+            });
+        }
     }
 
 
