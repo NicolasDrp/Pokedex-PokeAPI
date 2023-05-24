@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     let pokemonPerPage = 28;
     // Nombre de Pokémon affichés actuellement
     let displayedPokemons = 0;
-    // Div contenant le pokemon selectionner , le precedant et le suivant
-    let sliderPokemon = document.getElementById('sliderPokemon');
     //Div du pokemon afficher
     let displayedPokemon = document.getElementById('displayedPokemon');
     //Div du pokemon precedant
