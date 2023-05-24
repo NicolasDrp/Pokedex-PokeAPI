@@ -409,21 +409,21 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
 
-    //Prev Next Pokemon au clavier
-    document.addEventListener('keydown', function (event) {
-        // Vérification si la touche enfoncée est la flèche gauche (keyCode 37)
-        console.log(event)
-        switch (event.Key) {
-            case "ArrowLeft":
-                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
-                fetchPokemonInfo(prevPokemonID);
-                break;
-            case "ArrowRight":
-                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
-                fetchPokemonInfo(nextPokemonID);
-                break;
-        }
-    });
+    // //Prev Next Pokemon au clavier
+    // document.addEventListener('keydown', function (event) {
+    //     // Vérification si la touche enfoncée est la flèche gauche (keyCode 37)
+    //     console.log(event)
+    //     switch (event.Key) {
+    //         case "ArrowLeft":
+    //             // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+    //             fetchPokemonInfo(prevPokemonID);
+    //             break;
+    //         case "ArrowRight":
+    //             // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+    //             fetchPokemonInfo(nextPokemonID);
+    //             break;
+    //     }
+    // });
 
 
 
