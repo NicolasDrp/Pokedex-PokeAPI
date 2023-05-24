@@ -289,6 +289,19 @@ document.addEventListener('DOMContentLoaded', async function () {
             fetch(type.type.url, 'GET', printWeakness)
         });
 
+        //Fonction appeler par printPokemonInfo qui affiche les faiblesses d'un type
+        function printWeakness() {
+            let weak = JSON.parse(this.responseText);
+
+            //Afficher les faiblesses du type
+            weak.damage_relations.double_damage_from.forEach((weakness) => {
+                let li = document.createElement('li');
+                li.className = weakness.name;
+                li.innerHTML = weakness.name;
+                listWeakness.appendChild(li);
+            });
+        }
+
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);
 
@@ -328,19 +341,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             let abilityValue = document.createElement('li');
             abilityValue.innerHTML = ability.ability.name;
             abilities.appendChild(abilityValue);
-        });
-    }
-
-    //Fonction appeler par printPokemonInfo qui affiche les faiblesses d'un type
-    function printWeakness() {
-        let weak = JSON.parse(this.responseText);
-
-        //Afficher les faiblesses du type
-        weak.damage_relations.double_damage_from.forEach((weakness) => {
-            let li = document.createElement('li');
-            li.className = weakness.name;
-            li.innerHTML = weakness.name;
-            listWeakness.appendChild(li);
         });
     }
 
