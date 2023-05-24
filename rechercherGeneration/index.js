@@ -250,7 +250,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     //fonction appeler par fetchPokemonInfo
     function printPokemonInfo() {
         let pokemon = JSON.parse(this.responseText);
-        console.log(pokemon)
 
         //On vide les divs
         displayedPokemon.innerHTML = ''
@@ -265,16 +264,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         image.src = pokemon.sprites.front_default;
         displayedPokemon.appendChild(image);
 
-        // Afficher le Pokémon précédent s'il existe
-        if (prevPokemonId < 1) {
-
-            prevPokemonId = pokemonList.length;
+        let lastElementList = getPokemonId(pokemonList[pokemonList.length - 1].url);
+        let firstElementList = getPokemonId(pokemonList[0].url);
+        // Afficher dernier pokemon de la generation si nous sommes sur le premier
+        if (prevPokemonId < firstElementList) {
+            prevPokemonId = lastElementList;
         }
-        if (nextPokemonId > pokemonList.length) {
-            nextPokemonId = 1;
+        // Afficher premier pokemon de la generation si nous sommes sur le dernier
+        if (nextPokemonId > lastElementList) {
+            nextPokemonId = firstElementList;
         }
-
-        //Afficher les types du pokemon
 
         //On vide les ul
         listType.innerHTML = '';
@@ -330,8 +329,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             abilityValue.innerHTML = ability.ability.name;
             abilities.appendChild(abilityValue);
         });
-
-
     }
 
     //Fonction appeler par printPokemonInfo qui affiche les faiblesses d'un type
@@ -409,21 +406,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
 
-    // //Prev Next Pokemon au clavier
-    // document.addEventListener('keydown', function (event) {
-    //     // Vérification si la touche enfoncée est la flèche gauche (keyCode 37)
-    //     console.log(event)
-    //     switch (event.Key) {
-    //         case "ArrowLeft":
-    //             // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
-    //             fetchPokemonInfo(prevPokemonID);
-    //             break;
-    //         case "ArrowRight":
-    //             // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
-    //             fetchPokemonInfo(nextPokemonID);
-    //             break;
-    //     }
-    // });
+    //Prev Next Pokemon au clavier
+    document.addEventListener('keydown', function (event) {
+        switch (event.key) {
+            case "ArrowLeft":
+                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+                fetchPokemonInfo(prevPokemonID);
+                break;
+            case "ArrowRight":
+                // Lancement de la fonction fetchPokemonInfo au clic de la flèche gauche du clavier
+                fetchPokemonInfo(nextPokemonID);
+                break;
+        }
+    });
 
 
 
