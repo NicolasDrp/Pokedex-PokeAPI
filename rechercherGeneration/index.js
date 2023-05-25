@@ -1,15 +1,24 @@
+//Nom du pokemon à qui appartient les stats
+let name1;
+let name2;
 //Stat hp du pokemon 
-let hp;
+let hp1;
+let hp2;
 //Stat attack du pokemon
-let attack;
+let attack1;
+let attack2;
 //Stat defense du pokemon
-let defense;
+let defense1;
+let defense2;
 //Stat special-attack du pokemon
-let specialAttack;
+let specialAttack1;
+let specialAttack2;
 //Stat special-defense du pokemon
-let specialDefense
+let specialDefense1;
+let specialDefense2;
 //Stat speed du pokemon
-let speed;
+let speed1;
+let speed2;
 document.addEventListener('DOMContentLoaded', async function () {
     // div contenant les pokemon d'une génération
     let pokemonGeneration = document.getElementById('pokemonGeneration');
@@ -45,8 +54,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     let generationList;
     //Tableau pour eviter les doublons de faiblesse
     uniqueWeaknessList = [];
-
-
+    //Si pokestat1 sert à choisir quel stat changer 
+    pokestat1 = false;
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -266,6 +275,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     function printPokemonInfo() {
         let pokemon = JSON.parse(this.responseText);
 
+        if (pokestat1 == true) {
+            console.log(pokestat1)
+            //Stocker les stats du pokemon dans leurs variables
+            name1 = pokemon.name;
+            hp1 = pokemon.stats[0].base_stat;
+            attack1 = pokemon.stats[1].base_stat;
+            defense1 = pokemon.stats[2].base_stat;
+            specialAttack1 = pokemon.stats[3].base_stat;
+            specialDefense1 = pokemon.stats[4].base_stat;
+            speed1 = pokemon.stats[5].base_stat;
+            updateChart1()
+        }else{
+            console.log(pokestat1)
+            //Stocker les stats du pokemon dans leurs variables
+            name2 = pokemon.name;
+            hp2 = pokemon.stats[0].base_stat;
+            attack2 = pokemon.stats[1].base_stat;
+            defense2 = pokemon.stats[2].base_stat;
+            specialAttack2 = pokemon.stats[3].base_stat;
+            specialDefense2 = pokemon.stats[4].base_stat;
+            speed2 = pokemon.stats[5].base_stat;
+            updateChart2()
+        }
+        pokestat1 = !pokestat1;
+
         //On vide les divs
         displayedPokemon.innerHTML = ''
 
@@ -335,15 +369,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 listWeakness.appendChild(li);
             });
 
-            //Stocker les stats du pokemon dans leurs variables
-            hp = pokemon.stats[0].base_stat;
-            attack = pokemon.stats[1].base_stat;
-            defense = pokemon.stats[2].base_stat;
-            specialAttack = pokemon.stats[3].base_stat;
-            specialDefense = pokemon.stats[4].base_stat;
-            speed = pokemon.stats[5].base_stat;
-
-            updateChart()
         }
 
         fetchPokemonInfoPrev(prevPokemonId);
