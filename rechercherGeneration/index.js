@@ -1,3 +1,15 @@
+//Stat hp du pokemon 
+let hp;
+//Stat attack du pokemon
+let attack;
+//Stat defense du pokemon
+let defense;
+//Stat special-attack du pokemon
+let specialAttack;
+//Stat special-defense du pokemon
+let specialDefense
+//Stat speed du pokemon
+let speed;
 document.addEventListener('DOMContentLoaded', async function () {
     // div contenant les pokemon d'une génération
     let pokemonGeneration = document.getElementById('pokemonGeneration');
@@ -33,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let generationList;
     //Tableau pour eviter les doublons de faiblesse
     uniqueWeaknessList = [];
+
 
 
     function fetch(url, method, fun) {
@@ -322,7 +335,16 @@ document.addEventListener('DOMContentLoaded', async function () {
                 listWeakness.appendChild(li);
             });
 
-        }      
+            //Stocker les stats du pokemon dans leurs variables
+            hp = pokemon.stats[0].base_stat;
+            attack = pokemon.stats[1].base_stat;
+            defense = pokemon.stats[2].base_stat;
+            specialAttack = pokemon.stats[3].base_stat;
+            specialDefense = pokemon.stats[4].base_stat;
+            speed = pokemon.stats[5].base_stat;
+
+            updateChart()
+        }
 
         fetchPokemonInfoPrev(prevPokemonId);
         fetchPokemonInfoNext(nextPokemonId);

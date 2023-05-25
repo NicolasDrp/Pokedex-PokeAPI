@@ -129,21 +129,26 @@ form {
 
 /* Section de droite  */
 #right {
+    position: sticky;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 55%;
+    height: 97vh;
     margin-left: 3%;
     background-color: var(--couleur-secondaire);
     border-radius: 5px;
-    height: 100vh;
 }
 
 #sliderPokemon {
+    margin-top: 8rem;
     display: flex;
     height: 20%;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 10rem;
+
 }
 
 #sliderPokemon img {
@@ -235,6 +240,18 @@ form {
 .divType,
 .divWeakness {
     width: 25%;
+}
+
+#myChart {
+    background-color: var(--couleur-pokedex-generation);
+    border-radius: 5px;
+    width: 60% !important;
+    margin: auto;
+}
+
+#chartContainer {
+    margin: auto;
+    width: 50%;
 }
 
 /* Couleur des li selon leurs types */
