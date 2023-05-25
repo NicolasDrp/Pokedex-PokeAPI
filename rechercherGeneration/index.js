@@ -276,7 +276,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         let pokemon = JSON.parse(this.responseText);
 
         if (pokestat1 == true) {
-            console.log(pokestat1)
             //Stocker les stats du pokemon dans leurs variables
             name1 = pokemon.name;
             hp1 = pokemon.stats[0].base_stat;
@@ -287,7 +286,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             speed1 = pokemon.stats[5].base_stat;
             updateChart1()
         }else{
-            console.log(pokestat1)
             //Stocker les stats du pokemon dans leurs variables
             name2 = pokemon.name;
             hp2 = pokemon.stats[0].base_stat;
