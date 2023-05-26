@@ -56,6 +56,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     uniqueWeaknessList = [];
     //Si pokestat1 sert à choisir quel stat changer 
     pokestat1 = false;
+    //l'objet dresseur contenant son nom ainsi que ses pokemon
+    const dresseur = {
+        name: undefined,
+        pokemonIds: []
+    };
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -110,6 +115,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
             div.appendChild(img);
 
+            //Je creer le bouton pour ajouter mon pokemon à mon equipe
+            let btnTeam = document.createElement('button');
+            btnTeam.id = 'btnTeam'
+            btnTeam.innerHTML = '+';
+            div.appendChild(btnTeam);
+
             // J'affiche le numéro du Pokémon
             let p = document.createElement('p');
             p.innerHTML = '#' + pokemonId;
@@ -122,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             // Si la div est cliqué, lancer la fonction fetchPokemonInfo
 
-            div.addEventListener('click', function () {
+            img.addEventListener('click', function () {
                 fetchPokemonInfo(pokemonId);
             });
 
@@ -256,7 +267,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 div.appendChild(p);
                 // Si la div est cliqué, lancer la fonction fetchPokemonInfo
 
-                div.addEventListener('click', function () {
+                img.addEventListener('click', function () {
                     fetchPokemonInfo(pokemonId);
                 });
                 pokemonGeneration.appendChild(div);
@@ -285,7 +296,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             specialDefense1 = pokemon.stats[4].base_stat;
             speed1 = pokemon.stats[5].base_stat;
             updateChart1()
-        }else{
+        } else {
             //Stocker les stats du pokemon dans leurs variables
             name2 = pokemon.name;
             hp2 = pokemon.stats[0].base_stat;

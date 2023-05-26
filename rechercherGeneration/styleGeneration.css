@@ -26,6 +26,7 @@ main {
 
 #pokemonGeneration div {
     margin-bottom: 0.8rem;
+    position: relative;
 }
 
 #pokemonGeneration div img {
@@ -36,6 +37,15 @@ main {
 
 #pokemonGeneration div p {
     margin: 0 auto 0 auto;
+}
+
+#btnTeam {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #28a745;
+    border: none;
+    border-radius: 3px;
 }
 
 /* Affichage des génération */
