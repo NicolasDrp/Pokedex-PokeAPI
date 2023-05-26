@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         name: undefined,
         pokemonIds: []
     };
+    //Je récupere le ul pokeTeam pour y afficher l'équipe du dresseur
+    let pokeTeam = document.getElementById('pokeTeam');
+
 
     function fetch(url, method, fun) {
         //Initialisation de XHR
@@ -131,10 +134,27 @@ document.addEventListener('DOMContentLoaded', async function () {
             p.innerHTML = pokemonList[i].name;
             div.appendChild(p);
 
-            // Si la div est cliqué, lancer la fonction fetchPokemonInfo
-
+            // Si l'image est cliqué, lancer la fonction fetchPokemonInfo
             img.addEventListener('click', function () {
                 fetchPokemonInfo(pokemonId);
+            });
+
+            //Si le bouton btnTeam est cliqué , mettre à jour l'équipe
+            btnTeam.addEventListener('click', () => {
+                //si il y a moins de 6 poke , on peut en rajouter
+                if (dresseur.pokemonIds.length < 6) {
+                    dresseur.pokemonIds.push(pokemonId);
+                }else{
+                    alert("Equipe complete , retirer un pokemon pour en rajouter de nouveau")
+                }
+                pokeTeam.innerHTML = ""
+                dresseur.pokemonIds.forEach(element => {
+                    let li = document.createElement('li');
+                    pokeTeam.appendChild(li)
+                    let img = document.createElement('img');
+                    img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element}.png`;
+                    li.appendChild(img);
+                });
             });
 
             // Je pousse mon div dans mon container qui a pour id 'pokemonGeneration'
@@ -256,6 +276,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
                 div.appendChild(img);
 
+                //Je creer le bouton pour ajouter mon pokemon à mon equipe
+                let btnTeam = document.createElement('button');
+                btnTeam.id = 'btnTeam'
+                btnTeam.innerHTML = '+';
+                div.appendChild(btnTeam);
+
                 // J'affiche le numéro du Pokémon
                 let p = document.createElement('p');
                 p.innerHTML = '#' + pokemonId;
@@ -265,8 +291,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 p = document.createElement('p');
                 p.innerHTML = pokemonList[i].name;
                 div.appendChild(p);
-                // Si la div est cliqué, lancer la fonction fetchPokemonInfo
 
+                // Si l'image est cliqué, lancer la fonction fetchPokemonInfo
                 img.addEventListener('click', function () {
                     fetchPokemonInfo(pokemonId);
                 });
