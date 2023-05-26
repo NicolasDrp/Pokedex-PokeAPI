@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 pokeTeam.removeChild(li);
                 // Supprimer l'élément correspondant de la liste dresseur.pokemonIds
                 dresseur.pokemonIds = dresseur.pokemonIds.filter(id => id !== element);
+                saveCookie();
             });
             saveCookie();
             li.appendChild(deleteBtn);
@@ -202,49 +203,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         dresseurForm.style.display = 'initial';
         btnLogout.style.display = "none";
     });
-    // //Affiche le formulaire d'enregistrement
-    // register.addEventListener('click', () => {
-    //     containerForm.style.display = "initial";
-    // });
-
-    // //passe le fomulaire en display none 
-    // croixForm.addEventListener('click', () => {
-    //     containerForm.style.display = 'none';
-    // });
-
-    // //A l'envoie du formulaire dresseurForm , lance la fonction searchPokemon
-    // document.getElementById('dresseurForm').addEventListener('submit', () => {
-    //     event.preventDefault();
-    //     dresseur.name = document.getElementById('dresseurInput').value;
-    //     //Vérifier si un dresseur porte le meme nom dans les cookie
-    //     saveCookie()
-    //     document.getElementById('dresseurInput').value = "";
-
-    // });
-
-    // //On ajoute/modifie les valeurs du cookie
-    // function saveCookie() {
-    //     // Convertir l'objet dresseur en chaîne JSON
-    //     const dresseurJSON = JSON.stringify(dresseur);
-
-    //     // Enregistrer la chaîne JSON dans un cookie
-    //     document.cookie = `dresseur=${dresseurJSON}; max-age = 86400`;
-    // }
-
-    // // Fonction pour récupérer la valeur d'un cookie par son nom
-    // function getCookie(cookieName) {
-    //     const cookies = document.cookie.split(';');
-
-    //     for (let i = 0; i < cookies.length; i++) {
-    //         const cookie = cookies[i].trim();
-
-    //         // Vérifier si le nom du cookie correspond à celui recherché
-    //         if (cookie.startsWith(`${cookieName}=`)) {
-    //             const cookieValue = cookie.substring(cookieName.length + 1);
-    //             return decodeURIComponent(cookieValue);
-    //         }
-    //     }
-    // }
 
     //Affiche les pokemon d'une certaine génération
     function fetchPokemonList() {
@@ -315,30 +273,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                     printTeam();
                 }
             });
-
-            // //Si le bouton btnTeam est cliqué , mettre à jour l'équipe
-            // btnTeam.addEventListener('click', () => {
-            //     //On verifie que le dresseur se soit bien enregistrer
-            //     if (dresseur.name != undefined) {
-            //         //si il y a moins de 6 poke , on peut en rajouter
-            //         if (dresseur.pokemonIds.length < 6) {
-            //             dresseur.pokemonIds.push(pokemonId);
-            //         } else {
-            //             alert("Equipe complete , retirer un pokemon pour en rajouter de nouveau")
-            //         }
-            //         pokeTeam.innerHTML = ""
-            //         let li = document.createElement('li');
-            //         li.innerHTML = `équipe de ${dresseur.name}`
-            //         pokeTeam.appendChild(li)
-            //         dresseur.pokemonIds.forEach(element => {
-            //             let li = document.createElement('li');
-            //             pokeTeam.appendChild(li)
-            //             let img = document.createElement('img');
-            //             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element}.png`;
-            //             li.appendChild(img);
-            //         });
-            //     }
-            // });
 
             // Je pousse mon div dans mon container qui a pour id 'pokemonGeneration'
             pokemonGeneration.appendChild(div);
@@ -464,24 +398,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 btnTeam.id = 'btnTeam'
                 btnTeam.innerHTML = '+';
                 div.appendChild(btnTeam);
-
-                // //Si le bouton btnTeam est cliqué , mettre à jour l'équipe
-                // btnTeam.addEventListener('click', () => {
-                //     //si il y a moins de 6 poke , on peut en rajouter
-                //     if (dresseur.pokemonIds.length < 6) {
-                //         dresseur.pokemonIds.push(pokemonId);
-                //     } else {
-                //         alert("Equipe complete , retirer un pokemon pour en rajouter de nouveau")
-                //     }
-                //     pokeTeam.innerHTML = ""
-                //     dresseur.pokemonIds.forEach(element => {
-                //         let li = document.createElement('li');
-                //         pokeTeam.appendChild(li)
-                //         let img = document.createElement('img');
-                //         img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element}.png`;
-                //         li.appendChild(img);
-                //     });
-                // });
 
                 // J'affiche le numéro du Pokémon
                 let p = document.createElement('p');
