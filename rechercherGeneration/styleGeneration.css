@@ -6,6 +6,7 @@
     --couleur-pokedex-generation: #4f7ec9;
     --couleur-text: #212529;
     --couleur-bouton: #28a745;
+    --couleur-suppression: #ce416b;
 }
 
 body {
@@ -17,28 +18,6 @@ main {
 }
 
 /* Formulaire dresseur */
-/* #containerForm {
-    position: fixed;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--blanc-generation);
-    padding: 30px;
-    margin-top: 30px;
-    border-radius: 5px;
-    display: none;
-} */
-
-/* .form-group {
-    margin-bottom: 10px;
-}
-
-#containerForm input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    font-size: 16px;
-    width: fit-content;
-} */
 
 #dresseurForm button {
     padding: 8px 10px;
@@ -104,6 +83,12 @@ main {
     border-radius: 3px;
 }
 
+#btnLogout {
+    background-color: var(--couleur-suppression);
+    border: none;
+    border-radius: 3px;
+}
+
 /* Affichage des génération */
 
 #containerGeneration {
@@ -151,10 +136,20 @@ header #pokeTeam {
 
 header #pokeTeam li {
     width: fit-content;
+    position: relative;
 }
 
 header #pokeTeam li img {
     width: 100%;
+}
+
+header #pokeTeam li button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--couleur-suppression);
+    border: none;
+    border-radius: 3px;
 }
 
 .generation,

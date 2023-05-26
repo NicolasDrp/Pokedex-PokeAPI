@@ -152,28 +152,28 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     //fonction printTeam pour afficher les pokemon et mettre à jour les cookies
     function printTeam() {
-        pokeTeam.innerHTML = ""
-        let h4 = document.createElement('h4');
-        h4.innerHTML = `équipe de ${dresseur.name}`
+        pokeTeam.innerHTML = "";
+        let h4 = document.querySelector('header h4');
+        h4.innerHTML = `équipe de ${dresseur.name}`;
         let h1 = document.querySelector('header h1');
         h1.insertAdjacentElement('afterend', h4);
         dresseur.pokemonIds.forEach(element => {
             let li = document.createElement('li');
-            pokeTeam.appendChild(li)
+            pokeTeam.appendChild(li);
             let img = document.createElement('img');
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element}.png`;
             li.appendChild(img);
 
             // Créer un bouton pour supprimer le li
             let deleteBtn = document.createElement('button');
-            deleteBtn.innerHTML = 'Supprimer';
+            deleteBtn.innerHTML = '-';
             deleteBtn.addEventListener('click', () => {
                 // Supprimer le li lors du clic sur le bouton
                 pokeTeam.removeChild(li);
                 // Supprimer l'élément correspondant de la liste dresseur.pokemonIds
                 dresseur.pokemonIds = dresseur.pokemonIds.filter(id => id !== element);
             });
-            saveCookie()
+            saveCookie();
             li.appendChild(deleteBtn);
         });
     }
@@ -194,7 +194,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         //on vide l'objet ainsi que le container html
         dresseur.name = undefined;
         dresseur.pokemonIds = [];
-        pokeTeam.innerHTML = ""
+        pokeTeam.innerHTML = "";
+        let h4 = document.querySelector('header h4');
+        h4.innerHTML = "";
 
         //on réaffiche le formulaire et désaffiche le btn
         dresseurForm.style.display = 'initial';
