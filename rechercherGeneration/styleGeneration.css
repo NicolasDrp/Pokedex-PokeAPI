@@ -5,6 +5,7 @@
     --orange-text: #ffce01;
     --couleur-pokedex-generation: #4f7ec9;
     --couleur-text: #212529;
+    --couleur-bouton: #28a745;
 }
 
 body {
@@ -13,6 +14,61 @@ body {
 
 main {
     display: flex;
+}
+
+/* Formulaire dresseur */
+/* #containerForm {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--blanc-generation);
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 5px;
+    display: none;
+} */
+
+/* .form-group {
+    margin-bottom: 10px;
+}
+
+#containerForm input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    width: fit-content;
+} */
+
+#dresseurForm button {
+    padding: 8px 10px;
+    font-size: 10px;
+    background-color: var(--couleur-bouton);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#dresseurForm button:hover {
+    background-color: var(--orange-text);
+}
+
+#croixForm {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#croixForm:hover {
+    color: red;
+    transition: 0.3s;
+}
+
+#btnLogout {
+    display: none;
 }
 
 /* Affichage des pokemon */
@@ -43,7 +99,7 @@ main {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #28a745;
+    background-color: var(--couleur-bouton);
     border: none;
     border-radius: 3px;
 }
@@ -83,6 +139,22 @@ header {
     background-color: var(--couleur-secondaire);
     border-radius: 5px;
     margin-bottom: 1.5rem;
+}
+
+header #pokeTeam {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: no-wrap;
+    width: fit-content;
+}
+
+header #pokeTeam li {
+    width: fit-content;
+}
+
+header #pokeTeam li img {
+    width: 100%;
 }
 
 .generation,
@@ -128,7 +200,7 @@ form {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: #28a745;
+    background-color: var(--couleur-bouton);
     border-radius: 5px;
     color: var(--blanc-generation);
     border: none;

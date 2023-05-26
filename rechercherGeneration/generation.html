@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleGeneration.css">
-    <title>Document</title>
+    <title>Pokedex</title>
 </head>
 
 <body>
@@ -14,6 +14,15 @@
         <section id="left">
             <header>
                 <h1>Pokedex</h1>
+                <!-- Formulaire dresseur -->
+                <form id="dresseurForm">
+                    <div class="form-group">
+                        <label for="dresseurInput">Connexion:</label>
+                        <input type="text" id="dresseurInput" required>
+                        <button type="submit">Enregistrer</button>
+                </form>
+                <button id="btnLogout">déconnexion</button>
+                </div>
                 <ul id="pokeTeam">
                 </ul>
             </header>
@@ -73,6 +82,7 @@
                 <canvas id="myChart"></canvas>
             </div>
         </section>
+
     </main>
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="index.js"></script>
